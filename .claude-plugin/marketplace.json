@@ -1,0 +1,15 @@
+{
+  "plugins": [
+    {
+      "name": "codeblock-ls",
+      "description": "Codeblock Language Server diagnostics for .dwp files — surfaces syntax errors and warnings via LSP.",
+      "version": "0.1.0",
+      "author": "Dontenwill",
+      "repository": "https://github.com/SimonGrafDontenwill/claude-ls-plugin",
+      "source": {
+        "type": "github",
+        "repo": "SimonGrafDontenwill/claude-ls-plugin"
+      }
+    }
+  ]
+}
