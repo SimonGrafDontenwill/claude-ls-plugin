@@ -1,0 +1,23 @@
+{
+  "name": "claude-ls-plugin",
+  "version": "0.1.0",
+  "description": "MCP server providing LSP diagnostics for Codeblock (.dwp) files",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "claude-ls-plugin": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "postinstall": "node scripts/postinstall.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0"
+  }
+}

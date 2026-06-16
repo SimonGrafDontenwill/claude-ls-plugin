@@ -1,0 +1,9 @@
+{
+  "codeblock": {
+    "command": "node",
+    "args": ["${CLAUDE_PLUGIN_ROOT}/bin/launch-codeblock-ls.mjs"],
+    "extensionToLanguage": {
+      ".dwp": "codeblock"
+    }
+  }
+}
