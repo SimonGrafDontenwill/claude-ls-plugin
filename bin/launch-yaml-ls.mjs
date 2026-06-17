@@ -8,6 +8,7 @@
  * 1. YAML_LS_PATH env var (path to yaml-ls.js or the yaml-ls binary)
  * 2. @dontenwill-standard/yaml-ls installed in this plugin's node_modules
  * 3. yaml-ls found on PATH (globally installed via npm install -g)
+ * 4. Local development checkout (YAML_LS_DEV_ROOT or default dev paths)
  */
 import { spawn } from "node:child_process";
 import { existsSync } from "node:fs";
@@ -48,6 +49,21 @@ function findYamlLs() {
     }
   } catch {
     // not on PATH
+  }
+
+  // Local development checkout — YAML_LS_DEV_ROOT or well-known dev paths
+  const devRoots = process.env.YAML_LS_DEV_ROOT
+    ? [process.env.YAML_LS_DEV_ROOT]
+    : process.platform === "win32"
+      ? ["C:\\Dev\\yaml-ls"]
+      : ["/home/dev/yaml-ls", `${process.env.HOME ?? ""}/Dev/yaml-ls`];
+
+  for (const root of devRoots) {
+    const devBin = join(root, "bin", "yaml-ls.js");
+    const devCompiled = join(root, "out", "src", "server.js");
+    if (existsSync(devBin) && existsSync(devCompiled)) {
+      return { cmd: "node", args: [devBin] };
+    }
   }
 
   throw new Error(

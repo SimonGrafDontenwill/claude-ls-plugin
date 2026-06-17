@@ -40,6 +40,21 @@ function findYamlLsBin(): { cmd: string; args: string[] } {
     // not on PATH
   }
 
+  // Local development checkout — YAML_LS_DEV_ROOT or well-known dev paths
+  const devRoots = process.env["YAML_LS_DEV_ROOT"]
+    ? [process.env["YAML_LS_DEV_ROOT"]]
+    : process.platform === "win32"
+      ? ["C:\\Dev\\yaml-ls"]
+      : ["/home/dev/yaml-ls", `${process.env["HOME"] ?? ""}/Dev/yaml-ls`];
+
+  for (const root of devRoots) {
+    const devBin = join(root, "bin", "yaml-ls.js");
+    const devCompiled = join(root, "out", "src", "server.js");
+    if (existsSync(devBin) && existsSync(devCompiled)) {
+      return { cmd: "node", args: [devBin] };
+    }
+  }
+
   throw new Error(
     "YAML Language Server not found.\n" +
       "Install it: npm install @dontenwill-standard/yaml-ls\n" +
