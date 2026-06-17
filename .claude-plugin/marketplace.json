@@ -1,18 +1,47 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "dontenwill-plugins",
+  "description": "Language server plugins for Dontenwill projects",
   "owner": {
     "name": "Dontenwill"
   },
   "plugins": [
     {
       "name": "codeblock-ls",
+      "description": "Codeblock Language Server diagnostics for .dwp files — surfaces syntax errors and warnings via LSP.",
+      "author": {
+        "name": "Dontenwill"
+      },
+      "category": "development",
       "source": ".",
-      "description": "Codeblock Language Server diagnostics for .dwp files — surfaces syntax errors and warnings via LSP."
+      "lspServers": {
+        "codeblock": {
+          "command": "node",
+          "args": ["./bin/launch-codeblock-ls.mjs"],
+          "extensionToLanguage": {
+            ".dwp": "codeblock"
+          }
+        }
+      }
     },
     {
       "name": "yaml-ls",
+      "description": "YAML Language Server for .yaml/.yml files — validates against JSON schemas and checks embedded JavaScript.",
+      "author": {
+        "name": "Dontenwill"
+      },
+      "category": "development",
       "source": ".",
-      "description": "YAML Language Server for .yaml/.yml files — validates against JSON schemas and checks embedded JavaScript."
+      "lspServers": {
+        "yaml": {
+          "command": "node",
+          "args": ["./bin/launch-yaml-ls.mjs"],
+          "extensionToLanguage": {
+            ".yaml": "yaml",
+            ".yml": "yaml"
+          }
+        }
+      }
     }
   ]
 }
