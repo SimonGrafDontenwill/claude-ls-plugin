@@ -52,21 +52,27 @@ npm run build
 ## Installing the Codeblock Language Server
 
 The Codeblock LS ships as a native binary (no JVM at runtime) built with GraalVM.
-Binaries are uploaded manually to a public endpoint — the URL will be provided separately.
+**`npm install` downloads the binary automatically** for Windows and Linux.
 
-### Option A — Download pre-built binary (recommended)
+| Platform | Binary URL |
+|---|---|
+| Windows | `https://documentation-businessexpress-prod.s3.eu-central-1.amazonaws.com/assets/codeblock-language-server.exe` |
+| Linux | `https://documentation-businessexpress-prod.s3.eu-central-1.amazonaws.com/assets/codeblock-language-server` |
 
-Download the binary for your platform from the public endpoint and place it at the default location:
+The binary is placed at:
 
 | Platform | Default path |
 |---|---|
 | Windows | `%LOCALAPPDATA%\opencode\bin\codeblock-ls\codeblock-language-server.exe` |
 | Linux | `~/.local/share/opencode/bin/codeblock-ls/codeblock-language-server` |
-| macOS | `~/.local/share/opencode/bin/codeblock-ls/codeblock-language-server` (JAR fallback only) |
 
-Or use the setup script from the `codeblock_language_server` repository to download and install automatically (once the endpoint is configured in the script).
+To skip the automatic download (e.g. in CI): `SKIP_CODEBLOCK_LS_DOWNLOAD=1 npm install`
 
-### Option B — Build from source
+### macOS / Manual install
+
+macOS has no pre-built binary. Use the JAR fallback (requires JDK 21+) or build from source:
+
+### Option — Build from source
 
 Requires the `codeblock_language_server` repository checked out locally.
 
