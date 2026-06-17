@@ -5,13 +5,5 @@
     "extensionToLanguage": {
       ".dwp": "codeblock"
     }
-  },
-  "yaml": {
-    "command": "node",
-    "args": ["${CLAUDE_PLUGIN_ROOT}/bin/launch-yaml-ls.mjs"],
-    "extensionToLanguage": {
-      ".yaml": "yaml",
-      ".yml": "yaml"
-    }
   }
 }

@@ -40,17 +40,11 @@ if (settings !== null) {
     changed = true;
   }
 
-  const yamlEntry = join(distDir, "yaml-mcp.js");
-  if (settings.mcpServers["yaml-ls"]?.args?.[0] !== yamlEntry) {
-    settings.mcpServers["yaml-ls"] = { command: "node", args: [yamlEntry] };
-    changed = true;
-  }
-
   if (changed) {
     writeSettings(settings);
-    console.log(`[claude-ls-plugin] Registered MCP servers 'codeblock-ls' and 'yaml-ls' in ${settingsPath}`);
+    console.log(`[claude-ls-plugin] Registered MCP server 'codeblock-ls' in ${settingsPath}`);
   } else {
-    console.log("[claude-ls-plugin] MCP entries already up to date in", settingsPath);
+    console.log("[claude-ls-plugin] MCP entry already up to date in", settingsPath);
   }
 }
 

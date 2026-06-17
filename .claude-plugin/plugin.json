@@ -1,11 +1,11 @@
 {
-  "name": "dontenwill-language-servers",
-  "description": "Integrates the Codeblock (.dwp) and YAML Language Servers into Claude Code — live diagnostics via LSP and explicit validation via MCP tools.",
+  "name": "codeblock-ls",
+  "description": "Codeblock Language Server diagnostics for .dwp files — surfaces syntax errors and warnings via LSP and the get_diagnostics MCP tool.",
   "version": "0.2.0",
   "author": {
     "name": "Dontenwill",
     "url": "https://github.com/dontenwill-standard"
   },
-  "repository": "https://github.com/dontenwill-standard/claude-ls-plugin",
+  "repository": "https://github.com/SimonGrafDontenwill/claude-ls-plugin",
   "license": "MIT"
 }

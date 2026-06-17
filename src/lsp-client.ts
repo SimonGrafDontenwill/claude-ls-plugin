@@ -129,6 +129,10 @@ export class LspClient extends EventEmitter {
     await this.request("initialize", {
       processId: process.pid,
       rootUri,
+      initializationOptions: {
+        optimizeForUseWithoutKnownSystemContext: true,
+        debugMode: false,
+      },
       capabilities: {
         textDocument: {
           publishDiagnostics: { relatedInformation: false },

@@ -23,25 +23,6 @@
           }
         }
       }
-    },
-    {
-      "name": "yaml-ls",
-      "description": "YAML Language Server for .yaml/.yml files — validates against JSON schemas and checks embedded JavaScript.",
-      "author": {
-        "name": "Dontenwill"
-      },
-      "category": "development",
-      "source": ".",
-      "lspServers": {
-        "yaml": {
-          "command": "node",
-          "args": ["./bin/launch-yaml-ls.mjs"],
-          "extensionToLanguage": {
-            ".yaml": "yaml",
-            ".yml": "yaml"
-          }
-        }
-      }
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "name": "claude-ls-plugin",
   "version": "0.2.0",
-  "description": "Claude Code plugin integrating the Codeblock (.dwp) and YAML Language Servers",
+  "description": "Claude Code plugin integrating the Codeblock Language Server for .dwp files",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
@@ -15,9 +15,6 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1"
-  },
-  "optionalDependencies": {
-    "@dontenwill-standard/yaml-ls": "*"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
