@@ -42,15 +42,17 @@ export function severityName(s: number): string {
 
 export class LspClient extends EventEmitter {
   private readonly proc: ChildProcessWithoutNullStreams;
+  private readonly languageId: string;
   private buffer = "";
   private nextId = 1;
   private readonly pending = new Map<number, (msg: JsonRpcMessage) => void>();
   private readonly diagnostics = new Map<string, LspDiagnostic[]>();
   private initialized = false;
 
-  constructor(proc: ChildProcessWithoutNullStreams) {
+  constructor(proc: ChildProcessWithoutNullStreams, languageId = "codeblock") {
     super();
     this.proc = proc;
+    this.languageId = languageId;
 
     proc.stdout.setEncoding("utf8");
     proc.stdout.on("data", (chunk: string) => this.onData(chunk));
@@ -152,7 +154,7 @@ export class LspClient extends EventEmitter {
     this.notify("textDocument/didOpen", {
       textDocument: {
         uri,
-        languageId: "codeblock",
+        languageId: this.languageId,
         version: 1,
         text: content,
       },

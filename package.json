@@ -1,7 +1,7 @@
 {
   "name": "claude-ls-plugin",
-  "version": "0.1.0",
-  "description": "MCP server providing LSP diagnostics for Codeblock (.dwp) files",
+  "version": "0.2.0",
+  "description": "Claude Code plugin integrating the Codeblock (.dwp) and YAML Language Servers",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
@@ -15,6 +15,9 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1"
+  },
+  "optionalDependencies": {
+    "@dontenwill-standard/yaml-ls": "*"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

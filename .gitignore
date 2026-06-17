@@ -1,3 +1,6 @@
 node_modules/
 *.js.map
 .claude/settings.local.json
+.claude/skills
+.agents/skills
+skills-lock.json

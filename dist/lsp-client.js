@@ -11,14 +11,16 @@ export function severityName(s) {
 }
 export class LspClient extends EventEmitter {
     proc;
+    languageId;
     buffer = "";
     nextId = 1;
     pending = new Map();
     diagnostics = new Map();
     initialized = false;
-    constructor(proc) {
+    constructor(proc, languageId = "codeblock") {
         super();
         this.proc = proc;
+        this.languageId = languageId;
         proc.stdout.setEncoding("utf8");
         proc.stdout.on("data", (chunk) => this.onData(chunk));
         proc.stderr.on("data", (chunk) => {
@@ -112,7 +114,7 @@ export class LspClient extends EventEmitter {
         this.notify("textDocument/didOpen", {
             textDocument: {
                 uri,
-                languageId: "codeblock",
+                languageId: this.languageId,
                 version: 1,
                 text: content,
             },

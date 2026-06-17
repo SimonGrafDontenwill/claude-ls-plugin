@@ -1,7 +1,7 @@
 {
-  "name": "codeblock-ls",
-  "description": "Codeblock Language Server diagnostics for .dwp files — surfaces syntax errors and warnings via the Codeblock LSP.",
-  "version": "0.1.0",
+  "name": "dontenwill-language-servers",
+  "description": "Integrates the Codeblock (.dwp) and YAML Language Servers into Claude Code — live diagnostics via LSP and explicit validation via MCP tools.",
+  "version": "0.2.0",
   "author": {
     "name": "Dontenwill",
     "url": "https://github.com/dontenwill-standard"

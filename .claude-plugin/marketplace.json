@@ -8,6 +8,11 @@
       "name": "codeblock-ls",
       "source": ".",
       "description": "Codeblock Language Server diagnostics for .dwp files — surfaces syntax errors and warnings via LSP."
+    },
+    {
+      "name": "yaml-ls",
+      "source": ".",
+      "description": "YAML Language Server for .yaml/.yml files — validates against JSON schemas and checks embedded JavaScript."
     }
   ]
 }

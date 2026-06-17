@@ -5,9 +5,8 @@ import { homedir } from "node:os";
 import { fileURLToPath } from "node:url";
 
 const pluginRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const entryPoint = join(pluginRoot, "dist", "index.js").replace(/\\/g, "/");
+const distDir = join(pluginRoot, "dist").replace(/\\/g, "/");
 
-// Claude Code stores settings in ~/.claude/settings.json (global)
 const settingsPath = join(homedir(), ".claude", "settings.json");
 const settingsDir = dirname(settingsPath);
 
@@ -31,16 +30,24 @@ if (settings === null) process.exit(0);
 
 settings.mcpServers ??= {};
 
-const existing = settings.mcpServers["codeblock-ls"];
-if (existing?.args?.[0] === entryPoint) {
-  console.log("[claude-ls-plugin] MCP entry already up to date in", settingsPath);
+let changed = false;
+
+const codeblockEntry = join(distDir, "index.js");
+if (settings.mcpServers["codeblock-ls"]?.args?.[0] !== codeblockEntry) {
+  settings.mcpServers["codeblock-ls"] = { command: "node", args: [codeblockEntry] };
+  changed = true;
+}
+
+const yamlEntry = join(distDir, "yaml-mcp.js");
+if (settings.mcpServers["yaml-ls"]?.args?.[0] !== yamlEntry) {
+  settings.mcpServers["yaml-ls"] = { command: "node", args: [yamlEntry] };
+  changed = true;
+}
+
+if (!changed) {
+  console.log("[claude-ls-plugin] MCP entries already up to date in", settingsPath);
   process.exit(0);
 }
 
-settings.mcpServers["codeblock-ls"] = {
-  command: "node",
-  args: [entryPoint],
-};
-
 writeSettings(settings);
-console.log(`[claude-ls-plugin] Registered MCP server 'codeblock-ls' in ${settingsPath}`);
+console.log(`[claude-ls-plugin] Registered MCP servers 'codeblock-ls' and 'yaml-ls' in ${settingsPath}`);
